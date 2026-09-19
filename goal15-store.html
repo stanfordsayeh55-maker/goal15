@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GOAL15 — Top League Jerseys, $15, Montserrado Delivery</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Work+Sans:wght@400;500;600;700&display=swap">
+<style>
+  :root{
+    --pitch-dark:#0F2A1C;
+    --pitch:#1B5E3A;
+    --pitch-light:#3E8E5B;
+    --gold:#F0A93B;
+    --paper:#F6F2E9;
+    --ink:#12181A;
+    --red:#B23A2E;
+    --card-bg:#FFFFFF;
+    --line: rgba(18,24,26,0.12);
+    --shadow: 0 10px 30px rgba(15,42,28,0.12);
+  }
+  :root:not([data-theme="light"]){
+    color-scheme: light dark;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#101613;
+      --ink:#EDEEE9;
+      --card-bg:#171F1A;
+      --line: rgba(237,238,233,0.14);
+      --shadow: 0 10px 30px rgba(0,0,0,0.4);
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#101613;
+    --ink:#EDEEE9;
+    --card-bg:#171F1A;
+    --line: rgba(237,238,233,0.14);
+    --shadow: 0 10px 30px rgba(0,0,0,0.4);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Work Sans', system-ui, -apple-system, Segoe UI, sans-serif;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  .display{ font-family:'Anton', Impact, 'Arial Narrow', sans-serif; letter-spacing:0.01em; }
+  a{ color: inherit; }
+  img{ max-width:100%; }
+  .wrap{ max-width:1180px; margin:0 auto; padding:0 24px; }
+
+  /* ---------- HEADER ---------- */
+  header{
+    position:sticky; top:0; z-index:40;
+    background:var(--pitch-dark);
+    color:var(--paper);
+    border-bottom: 3px solid var(--gold);
+  }
+  .headbar{ display:flex; align-items:center; justify-content:space-between; padding:14px 24px; max-width:1180px; margin:0 auto; }
+  .logo{ display:flex; align-items:baseline; gap:8px; cursor:pointer; }
+  .logo .mark{ font-family:'Anton',sans-serif; font-size:26px; color:var(--paper); }
+  .logo .num{ color:var(--gold); }
+  .logo .tag{ font-size:11px; color:var(--pitch-light); text-transform:none; }
+  .cart-btn{
+    display:flex; align-items:center; gap:10px;
+    background:transparent; border:1.5px solid var(--pitch-light); color:var(--paper);
+    padding:9px 16px; border-radius:999px; cursor:pointer; font-size:14px; font-weight:600;
+    font-family:inherit;
+  }
+  .cart-btn:hover{ border-color:var(--gold); }
+  .cart-count{
+    background:var(--gold); color:var(--pitch-dark); min-width:20px; height:20px; border-radius:50%;
+    display:inline-flex; align-items:center; justify-content:center; font-size:12px; font-weight:700;
+    padding:0 5px;
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    background:
+      radial-gradient(1100px 500px at 85% -10%, rgba(240,169,59,0.16), transparent 60%),
+      linear-gradient(180deg, var(--pitch-dark), #0B2016 85%);
+    color:var(--paper);
+    padding:64px 24px 56px;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero:before{
+    content:"";
+    position:absolute; inset:0;
+    background-image: repeating-linear-gradient(90deg, rgba(255,255,255,0.035) 0 2px, transparent 2px 84px);
+    pointer-events:none;
+  }
+  .hero-inner{ max-width:1180px; margin:0 auto; display:flex; align-items:center; gap:40px; flex-wrap:wrap; position:relative; }
+  .hero-copy{ flex:1 1 380px; min-width:280px; }
+  .eyebrow-line{ display:flex; align-items:center; gap:10px; color:var(--pitch-light); font-size:14px; font-weight:600; margin-bottom:18px; }
+  .eyebrow-line .dot{ width:8px; height:8px; border-radius:50%; background:var(--gold); }
+  .hero h1{
+    font-family:'Anton', sans-serif; font-size:clamp(34px, 5vw, 56px);
+    line-height:1.02; margin:0 0 18px; max-width:12ch; text-transform:none;
+  }
+  .hero h1 em{ font-style:normal; color:var(--gold); }
+  .hero p.sub{ font-size:17px; max-width:46ch; color:#D8E5DD; margin:0 0 28px; }
+  .hero-actions{ display:flex; gap:14px; flex-wrap:wrap; }
+  .btn-primary{
+    background:var(--gold); color:var(--pitch-dark); border:none; padding:14px 26px; border-radius:8px;
+    font-weight:700; font-size:15px; cursor:pointer; font-family:inherit;
+  }
+  .btn-primary:hover{ background:#f7b559; }
+  .btn-ghost{
+    background:transparent; color:var(--paper); border:1.5px solid rgba(246,242,233,0.35);
+    padding:14px 26px; border-radius:8px; font-weight:600; font-size:15px; cursor:pointer; font-family:inherit;
+  }
+  .btn-ghost:hover{ border-color:var(--paper); }
+  .price-badge{
+    flex:0 0 auto; width:190px; height:190px; border-radius:50%;
+    background:var(--pitch); border:3px solid var(--gold);
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    transform:rotate(-6deg);
+  }
+  .price-badge .amount{ font-family:'Anton',sans-serif; font-size:58px; color:var(--paper); line-height:1; }
+  .price-badge .amount sup{ font-size:22px; vertical-align:10px; color:var(--gold); }
+  .price-badge .label{ font-size:12px; letter-spacing:0.06em; color:var(--pitch-light); margin-top:2px; }
+  .hero-facts{ display:flex; gap:26px; margin-top:34px; flex-wrap:wrap; }
+  .hero-facts div{ font-size:13px; color:#BFD2C6; max-width:150px; }
+  .hero-facts strong{ display:block; color:var(--paper); font-size:15px; margin-bottom:2px; }
+
+  /* ---------- FILTER BAR ---------- */
+  .filterbar{
+    position:sticky; top:61px; z-index:30;
+    background:var(--paper); border-bottom:1px solid var(--line);
+    padding:14px 24px; overflow-x:auto; white-space:nowrap;
+  }
+  .filterbar-inner{ max-width:1180px; margin:0 auto; display:flex; gap:10px; }
+  .chip{
+    border:1.5px solid var(--line); background:var(--card-bg); color:var(--ink);
+    padding:8px 16px; border-radius:999px; font-size:14px; font-weight:600; cursor:pointer;
+    font-family:inherit; flex:0 0 auto;
+  }
+  .chip.active{ background:var(--pitch); border-color:var(--pitch); color:#fff; }
+
+  /* ---------- CATALOG ---------- */
+  .catalog{ padding:44px 24px 70px; }
+  .catalog h2{ font-family:'Anton',sans-serif; font-size:26px; margin:0 0 4px; }
+  .catalog .sub{ color:var(--pitch); font-size:14px; margin:0 0 28px; font-weight:600; }
+  .grid{
+    display:grid; grid-template-columns:repeat(auto-fill, minmax(240px,1fr)); gap:22px;
+  }
+  .card{
+    background:var(--card-bg); border:1px solid var(--line); border-radius:14px;
+    padding:18px 18px 20px; display:flex; flex-direction:column; gap:12px;
+    box-shadow:var(--shadow);
+  }
+  .card .jersey-wrap{
+    background:linear-gradient(180deg, rgba(27,94,58,0.06), rgba(27,94,58,0.02));
+    border-radius:10px; padding:12px 8px 4px; display:flex; justify-content:center;
+  }
+  .card .meta{ display:flex; justify-content:space-between; align-items:baseline; }
+  .card .club{ font-weight:700; font-size:15.5px; }
+  .card .league{ font-size:11.5px; color:var(--pitch); font-weight:700; text-transform:uppercase; letter-spacing:0.04em; }
+  .card .kit-note{ font-size:12.5px; color:var(--ink); opacity:0.6; margin-top:-8px; }
+  .card-row{ display:flex; gap:8px; align-items:center; }
+  select.size{
+    flex:1; padding:9px 8px; border-radius:8px; border:1px solid var(--line); background:var(--paper); color:var(--ink);
+    font-family:inherit; font-size:13.5px;
+  }
+  .qty{ display:flex; align-items:center; border:1px solid var(--line); border-radius:8px; overflow:hidden; }
+  .qty button{ background:var(--paper); border:none; width:28px; height:34px; cursor:pointer; font-size:15px; color:var(--ink); font-family:inherit; }
+  .qty span{ width:24px; text-align:center; font-size:13.5px; font-weight:600; }
+  .add-btn{
+    margin-top:2px; background:var(--pitch-dark); color:#fff; border:none; padding:11px; border-radius:8px;
+    font-weight:700; font-size:13.5px; cursor:pointer; font-family:inherit;
+  }
+  .add-btn:hover{ background:var(--pitch); }
+  .add-btn.added{ background:var(--gold); color:var(--pitch-dark); }
+
+  /* ---------- DELIVERY STRIP ---------- */
+  .strip{ background:var(--pitch-dark); color:var(--paper); padding:30px 24px; }
+  .strip-inner{ max-width:1180px; margin:0 auto; display:flex; gap:30px; flex-wrap:wrap; }
+  .strip-item{ flex:1 1 220px; display:flex; gap:12px; }
+  .strip-item .ico{ font-size:22px; }
+  .strip-item h4{ margin:0 0 4px; font-size:14.5px; }
+  .strip-item p{ margin:0; font-size:13px; color:#BFD2C6; }
+
+  footer{ padding:26px 24px 40px; text-align:center; font-size:12.5px; color:var(--ink); opacity:0.55; }
+
+  /* ---------- CART DRAWER ---------- */
+  .overlay{
+    position:fixed; inset:0; background:rgba(10,15,12,0.5); z-index:60;
+    opacity:0; pointer-events:none; transition:opacity .25s ease;
+  }
+  .overlay.show{ opacity:1; pointer-events:auto; }
+  .drawer{
+    position:fixed; top:0; right:0; height:100%; width:min(420px,92vw);
+    background:var(--paper); z-index:70; box-shadow:-16px 0 40px rgba(0,0,0,0.25);
+    display:flex; flex-direction:column;
+    transform:translateX(100%); transition:transform .3s cubic-bezier(.2,.9,.2,1);
+  }
+  .drawer.show{ transform:translateX(0); }
+  .drawer-head{ display:flex; justify-content:space-between; align-items:center; padding:20px; border-bottom:1px solid var(--line); }
+  .drawer-head h3{ margin:0; font-family:'Anton',sans-serif; font-size:20px; }
+  .close-x{ background:none; border:none; font-size:22px; cursor:pointer; color:var(--ink); line-height:1; font-family:inherit; }
+  .drawer-items{ flex:1; overflow-y:auto; padding:14px 20px; }
+  .drawer-empty{ text-align:center; margin-top:60px; color:var(--ink); opacity:0.55; font-size:14px; }
+  .line-item{ display:flex; gap:12px; padding:14px 0; border-bottom:1px solid var(--line); align-items:center; }
+  .line-item .li-jersey{ width:52px; flex:0 0 auto; }
+  .li-info{ flex:1; min-width:0; }
+  .li-info .li-club{ font-weight:700; font-size:14px; }
+  .li-info .li-sub{ font-size:12.5px; opacity:0.65; }
+  .li-remove{ background:none; border:none; color:var(--red); cursor:pointer; font-size:12.5px; font-family:inherit; text-decoration:underline; padding:0; }
+  .li-price{ font-weight:700; font-size:14px; white-space:nowrap; }
+  .drawer-foot{ padding:18px 20px 22px; border-top:1px solid var(--line); }
+  .subtotal-row{ display:flex; justify-content:space-between; font-size:15px; font-weight:700; margin-bottom:14px; }
+  .checkout-btn{
+    width:100%; background:var(--gold); color:var(--pitch-dark); border:none; padding:14px; border-radius:8px;
+    font-weight:700; font-size:15px; cursor:pointer; font-family:inherit;
+  }
+  .checkout-btn:disabled{ opacity:0.5; cursor:not-allowed; }
+
+  /* ---------- CHECKOUT MODAL ---------- */
+  .modal-overlay{
+    position:fixed; inset:0; background:rgba(10,15,12,0.55); z-index:80;
+    display:none; align-items:center; justify-content:center; padding:20px; overflow-y:auto;
+  }
+  .modal-overlay.show{ display:flex; }
+  .modal{
+    background:var(--card-bg); border-radius:16px; max-width:520px; width:100%;
+    padding:28px 26px 26px; max-height:92vh; overflow-y:auto;
+  }
+  .modal h3{ font-family:'Anton',sans-serif; font-size:22px; margin:0 0 4px; }
+  .modal .modal-sub{ font-size:13.5px; opacity:0.65; margin:0 0 22px; }
+  .field{ margin-bottom:16px; }
+  .field label{ display:block; font-size:13px; font-weight:700; margin-bottom:6px; }
+  .field input, .field select, .field textarea{
+    width:100%; padding:11px 12px; border-radius:8px; border:1px solid var(--line);
+    background:var(--paper); color:var(--ink); font-family:inherit; font-size:14px;
+  }
+  .field textarea{ resize:vertical; min-height:56px; }
+  .pay-options{ display:flex; flex-direction:column; gap:10px; }
+  .pay-opt{
+    border:1.5px solid var(--line); border-radius:10px; padding:12px 14px; cursor:pointer;
+    display:flex; align-items:center; gap:10px; font-size:14px; font-weight:600;
+  }
+  .pay-opt.selected{ border-color:var(--pitch); background:rgba(27,94,58,0.06); }
+  .pay-opt input{ accent-color:var(--pitch); }
+  .mm-note{ font-size:12px; opacity:0.65; margin:6px 0 0 26px; }
+  .order-summary{ background:var(--paper); border:1px solid var(--line); border-radius:10px; padding:14px 16px; font-size:13.5px; margin-bottom:18px; }
+  .order-summary .row{ display:flex; justify-content:space-between; margin-bottom:4px; }
+  .order-summary .total{ font-weight:700; border-top:1px solid var(--line); padding-top:8px; margin-top:6px; }
+  .submit-order{
+    width:100%; background:var(--pitch-dark); color:#fff; border:none; padding:14px; border-radius:8px;
+    font-weight:700; font-size:15px; cursor:pointer; font-family:inherit; margin-top:4px;
+  }
+  .submit-order:hover{ background:var(--pitch); }
+  .modal-close{ background:none; border:none; float:right; font-size:20px; cursor:pointer; color:var(--ink); font-family:inherit; }
+  .confirm-box{ text-align:center; padding:10px 0 4px; }
+  .confirm-box .big-check{ font-size:44px; margin-bottom:10px; }
+  .confirm-box h3{ margin-bottom:8px; }
+  .confirm-box p{ font-size:14px; opacity:0.75; margin:0 0 20px; }
+  .wa-link{
+    display:inline-block; background:#25D366; color:#fff; padding:13px 24px; border-radius:8px;
+    font-weight:700; font-size:14.5px; text-decoration:none; margin-bottom:10px;
+  }
+  .modal-close-final{ display:block; margin:14px auto 0; background:none; border:none; text-decoration:underline; font-size:13.5px; color:var(--ink); cursor:pointer; font-family:inherit; }
+
+  @media (max-width:640px){
+    .hero-inner{ flex-direction:column; align-items:flex-start; }
+    .price-badge{ align-self:center; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="headbar">
+    <div class="logo" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+      <span class="mark">GOAL<span class="num">15</span></span>
+    </div>
+    <button class="cart-btn" onclick="openCart()">
+      🛒 Cart <span class="cart-count" id="cartCount">0</span>
+    </button>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-copy">
+      <div class="eyebrow-line"><span class="dot"></span>Delivering across Montserrado</div>
+      <h1>Any club. Any <em>top league</em>. One flat price.</h1>
+      <p class="sub">Premier League, La Liga, Serie A, Bundesliga and Ligue 1 kits — every jersey on this page is $15. Pay with mobile money or on delivery, no card needed.</p>
+      <div class="hero-actions">
+        <button class="btn-primary" onclick="document.getElementById('catalog').scrollIntoView({behavior:'smooth'})">Browse jerseys</button>
+        <button class="btn-ghost" onclick="openCart()">View cart</button>
+      </div>
+      <div class="hero-facts">
+        <div><strong>Montserrado only</strong>For now — Monrovia, Paynesville, Gardnersville & more</div>
+        <div><strong>Orange Money / MTN MoMo</strong>Pay ahead, or choose cash on delivery</div>
+        <div><strong>All sizes</strong>S through XL, adult fit</div>
+      </div>
+    </div>
+    <div class="price-badge">
+      <div class="amount"><sup>$</sup>15</div>
+      <div class="label">EVERY JERSEY</div>
+    </div>
+  </div>
+</section>
+
+<div class="filterbar">
+  <div class="filterbar-inner" id="filterbar"></div>
+</div>
+
+<section class="catalog" id="catalog">
+  <div class="wrap">
+    <h2>The lineup</h2>
+    <p class="sub">Tap a size, set a quantity, add to cart.</p>
+    <div class="grid" id="grid"></div>
+  </div>
+</section>
+
+<section class="strip">
+  <div class="strip-inner">
+    <div class="strip-item"><div class="ico">📍</div><div><h4>Montserrado delivery</h4><p>Riders cover Greater Monrovia, Paynesville, Gardnersville, Congo Town, Sinkor, Bushrod Island & nearby communities.</p></div></div>
+    <div class="strip-item"><div class="ico">📱</div><div><h4>Mobile money accepted</h4><p>Orange Money and MTN Mobile Money. Pay at checkout or when your order arrives.</p></div></div>
+    <div class="strip-item"><div class="ico">💵</div><div><h4>Cash on delivery</h4><p>No mobile money? Pay the rider in cash when your jersey is handed over.</p></div></div>
+  </div>
+</section>
+
+<footer>GOAL15 — jersey delivery in Montserrado County, Liberia. Club names shown for identification of the kit style ordered; artwork here is illustrative, not official club merchandise.</footer>
+
+<!-- Cart drawer -->
+<div class="overlay" id="overlay" onclick="closeCart()"></div>
+<div class="drawer" id="drawer">
+  <div class="drawer-head">
+    <h3>Your cart</h3>
+    <button class="close-x" onclick="closeCart()">&times;</button>
+  </div>
+  <div class="drawer-items" id="drawerItems"></div>
+  <div class="drawer-foot">
+    <div class="subtotal-row"><span id="subtotalLabel">0 jerseys</span><span id="subtotalAmount">$0</span></div>
+    <button class="checkout-btn" id="checkoutBtn" onclick="openCheckout()" disabled>Checkout</button>
+  </div>
+</div>
+
+<!-- Checkout modal -->
+<div class="modal-overlay" id="checkoutOverlay">
+  <div class="modal" id="checkoutModalBody"></div>
+</div>
+
+<script>
+/* ---------------- CONFIG ---------------- */
+// Replace with the WhatsApp number that should receive orders (country code, no +, no spaces).
+const WHATSAPP_NUMBER = "231887302728";
+
+/* ---------------- DATA ---------------- */
+const JERSEYS = [
+  {id:'mu', club:'Manchester United', league:'Premier League', c1:'#DA291C', c2:'#0A0A0A', pattern:'solid', num:'7'},
+  {id:'mc', club:'Manchester City', league:'Premier League', c1:'#6CABDD', c2:'#1C2C5B', pattern:'solid', num:'17'},
+  {id:'lfc', club:'Liverpool', league:'Premier League', c1:'#C8102E', c2:'#F6EB61', pattern:'solid', num:'11'},
+  {id:'ars', club:'Arsenal', league:'Premier League', c1:'#EF0107', c2:'#FFFFFF', pattern:'sleeve', num:'9'},
+  {id:'che', club:'Chelsea', league:'Premier League', c1:'#034694', c2:'#FFFFFF', pattern:'solid', num:'10'},
+  {id:'rma', club:'Real Madrid', league:'La Liga', c1:'#FFFFFF', c2:'#F0A93B', pattern:'trim', num:'5'},
+  {id:'fcb', club:'Barcelona', league:'La Liga', c1:'#A50044', c2:'#004D98', pattern:'stripes', num:'10'},
+  {id:'atm', club:'Atlético Madrid', league:'La Liga', c1:'#CB3524', c2:'#FFFFFF', pattern:'stripes', num:'8'},
+  {id:'juv', club:'Juventus', league:'Serie A', c1:'#FFFFFF', c2:'#0A0A0A', pattern:'stripes', num:'10'},
+  {id:'mil', club:'AC Milan', league:'Serie A', c1:'#FB090B', c2:'#0A0A0A', pattern:'stripes', num:'9'},
+  {id:'int', club:'Inter Milan', league:'Serie A', c1:'#1E4DA1', c2:'#0A0A0A', pattern:'stripes', num:'9'},
+  {id:'fcb2', club:'Bayern Munich', league:'Bundesliga', c1:'#DC052D', c2:'#0A0A0A', pattern:'solid', num:'25'},
+  {id:'bvb', club:'Borussia Dortmund', league:'Bundesliga', c1:'#FDE100', c2:'#0A0A0A', pattern:'sleeve', num:'11'},
+  {id:'psg', club:'Paris Saint-Germain', league:'Ligue 1', c1:'#004170', c2:'#DA291C', pattern:'sleeve', num:'30'},
+];
+const LEAGUES = ['All','Premier League','La Liga','Serie A','Bundesliga','Ligue 1'];
+const SIZES = ['S','M','L','XL'];
+const PRICE = 15;
+const DISTRICTS = [
+  'Greater Monrovia (Central)','Paynesville','Gardnersville','Congo Town','Sinkor',
+  'Bushrod Island','New Kru Town','West Point','Barnersville','Caldwell',
+  'Duport Road / SKD Blvd area','Rehab / ELWA area','Other community in Montserrado'
+];
+
+/* ---------------- STATE ---------------- */
+let activeLeague = 'All';
+let cart = [];
+try{
+  const saved = localStorage.getItem('goal15_cart');
+  if(saved) cart = JSON.parse(saved);
+}catch(e){ cart = []; }
+
+/* ---------------- JERSEY SVG ---------------- */
+function jerseySVG(j, size){
+  const s = size || 90;
+  const {c1,c2,pattern,num} = j;
+  let fillDefs = '';
+  let bodyFill = c1;
+  if(pattern === 'stripes'){
+    fillDefs = `<pattern id="stripe-${j.id}" width="14" height="10" patternUnits="userSpaceOnUse">
+      <rect width="14" height="10" fill="${c1}"/>
+      <rect x="0" width="7" height="10" fill="${c2}"/>
+    </pattern>`;
+    bodyFill = `url(#stripe-${j.id})`;
+  }
+  const sleeve2 = (pattern === 'sleeve') ? c2 : (pattern === 'trim' ? c2 : c1);
+  const collarColor = (pattern === 'trim') ? c2 : (c1 === '#FFFFFF' ? '#0A0A0A' : c2);
+  return `
+  <svg viewBox="0 0 120 120" width="${s}" height="${s}" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="${j.club} jersey">
+    <defs>${fillDefs}</defs>
+    <path d="M40 8 L20 20 L4 40 L18 54 L28 46 L28 100 Q28 108 36 108 L84 108 Q92 108 92 100 L92 46 L102 54 L116 40 L100 20 L80 8
+      Q76 16 60 16 Q44 16 40 8 Z" fill="${bodyFill}" stroke="rgba(0,0,0,0.18)" stroke-width="1.5"/>
+    <path d="M20 20 L4 40 L18 54 L28 46 L28 24 Z" fill="${sleeve2}" stroke="rgba(0,0,0,0.18)" stroke-width="1.2"/>
+    <path d="M80 8 L100 20 L116 40 L102 54 L92 46 L92 24 Z" fill="${sleeve2}" stroke="rgba(0,0,0,0.18)" stroke-width="1.2"/>
+    <path d="M40 8 Q44 16 60 16 Q76 16 80 8" fill="none" stroke="${collarColor}" stroke-width="4" stroke-linecap="round"/>
+    <text x="60" y="78" text-anchor="middle" font-family="Anton, sans-serif" font-size="30" fill="${collarColor}" opacity="0.92">${num}</text>
+  </svg>`;
+}
+
+/* ---------------- RENDER: FILTER BAR ---------------- */
+function renderFilterBar(){
+  const bar = document.getElementById('filterbar');
+  bar.innerHTML = LEAGUES.map(l =>
+    `<button class="chip ${l===activeLeague?'active':''}" onclick="setLeague('${l}')">${l}</button>`
+  ).join('');
+}
+function setLeague(l){ activeLeague = l; renderFilterBar(); renderGrid(); }
+
+/* ---------------- RENDER: GRID ---------------- */
+function renderGrid(){
+  const grid = document.getElementById('grid');
+  const list = activeLeague === 'All' ? JERSEYS : JERSEYS.filter(j => j.league === activeLeague);
+  grid.innerHTML = list.map(j => `
+    <div class="card">
+      <div class="jersey-wrap">${jerseySVG(j, 108)}</div>
+      <div class="meta">
+        <span class="club">${j.club}</span>
+      </div>
+      <span class="league">${j.league}</span>
+      <div class="card-row">
+        <select class="size" id="size-${j.id}">
+          ${SIZES.map(s => `<option value="${s}" ${s==='M'?'selected':''}>${s}</option>`).join('')}
+        </select>
+        <div class="qty">
+          <button onclick="stepQty('${j.id}',-1)">−</button>
+          <span id="qty-${j.id}">1</span>
+          <button onclick="stepQty('${j.id}',1)">+</button>
+        </div>
+      </div>
+      <button class="add-btn" id="add-${j.id}" onclick="addToCart('${j.id}')">Add to cart — $15</button>
+    </div>
+  `).join('');
+}
+const qtyState = {};
+function stepQty(id, dir){
+  const cur = qtyState[id] || 1;
+  const next = Math.min(6, Math.max(1, cur + dir));
+  qtyState[id] = next;
+  document.getElementById('qty-'+id).textContent = next;
+}
+
+/* ---------------- CART LOGIC ---------------- */
+function saveCart(){
+  try{ localStorage.setItem('goal15_cart', JSON.stringify(cart)); }catch(e){}
+}
+function addToCart(id){
+  const j = JERSEYS.find(x => x.id === id);
+  const size = document.getElementById('size-'+id).value;
+  const qty = qtyState[id] || 1;
+  const existing = cart.find(c => c.id === id && c.size === size);
+  if(existing){ existing.qty += qty; } else { cart.push({id, size, qty}); }
+  saveCart();
+  renderCartCount();
+  renderDrawer();
+  const btn = document.getElementById('add-'+id);
+  btn.textContent = 'Added ✓';
+  btn.classList.add('added');
+  setTimeout(()=>{ btn.textContent = 'Add to cart — $15'; btn.classList.remove('added'); }, 1100);
+}
+function removeFromCart(idx){
+  cart.splice(idx,1);
+  saveCart();
+  renderCartCount();
+  renderDrawer();
+}
+function cartTotalItems(){ return cart.reduce((sum,c)=>sum+c.qty,0); }
+function cartTotalAmount(){ return cartTotalItems() * PRICE; }
+function renderCartCount(){
+  document.getElementById('cartCount').textContent = cartTotalItems();
+}
+function renderDrawer(){
+  const wrap = document.getElementById('drawerItems');
+  if(cart.length === 0){
+    wrap.innerHTML = `<div class="drawer-empty">Your cart is empty.<br>Add a jersey to get started.</div>`;
+  } else {
+    wrap.innerHTML = cart.map((c, idx) => {
+      const j = JERSEYS.find(x => x.id === c.id);
+      return `
+      <div class="line-item">
+        <div class="li-jersey">${jerseySVG(j, 52)}</div>
+        <div class="li-info">
+          <div class="li-club">${j.club}</div>
+          <div class="li-sub">Size ${c.size} · Qty ${c.qty}</div>
+          <button class="li-remove" onclick="removeFromCart(${idx})">Remove</button>
+        </div>
+        <div class="li-price">$${c.qty * PRICE}</div>
+      </div>`;
+    }).join('');
+  }
+  document.getElementById('subtotalLabel').textContent = `${cartTotalItems()} jersey${cartTotalItems()===1?'':'s'}`;
+  document.getElementById('subtotalAmount').textContent = `$${cartTotalAmount()}`;
+  document.getElementById('checkoutBtn').disabled = cart.length === 0;
+}
+
+/* ---------------- DRAWER OPEN/CLOSE ---------------- */
+function openCart(){
+  document.getElementById('overlay').classList.add('show');
+  document.getElementById('drawer').classList.add('show');
+  renderDrawer();
+}
+function closeCart(){
+  document.getElementById('overlay').classList.remove('show');
+  document.getElementById('drawer').classList.remove('show');
+}
+
+/* ---------------- CHECKOUT MODAL ---------------- */
+let paymentMethod = 'mobile_money';
+function checkoutFormHTML(){
+  return `
+    <button class="modal-close" onclick="closeCheckout()">&times;</button>
+    <h3>Delivery details</h3>
+    <p class="modal-sub">We deliver across Montserrado only, for now.</p>
+
+    <div class="order-summary">
+      ${cart.map(c=>{ const j=JERSEYS.find(x=>x.id===c.id); return `<div class="row"><span>${j.club} (${c.size}) × ${c.qty}</span><span>$${c.qty*PRICE}</span></div>`; }).join('')}
+      <div class="row total"><span>Total</span><span>$${cartTotalAmount()}</span></div>
+    </div>
+
+    <div class="field">
+      <label for="cf-name">Full name</label>
+      <input id="cf-name" type="text" placeholder="e.g. Emmanuel Cooper" />
+    </div>
+    <div class="field">
+      <label for="cf-phone">Phone number</label>
+      <input id="cf-phone" type="tel" placeholder="e.g. 0770 000 000" />
+    </div>
+    <div class="field">
+      <label for="cf-district">Community in Montserrado</label>
+      <select id="cf-district">
+        ${DISTRICTS.map(d=>`<option value="${d}">${d}</option>`).join('')}
+      </select>
+    </div>
+    <div class="field">
+      <label for="cf-address">Landmark / delivery address</label>
+      <textarea id="cf-address" placeholder="Nearest landmark, street, house description..."></textarea>
+    </div>
+
+    <div class="field">
+      <label>Payment method</label>
+      <div class="pay-options">
+        <label class="pay-opt ${paymentMethod==='mobile_money'?'selected':''}" onclick="setPayment('mobile_money')">
+          <input type="radio" name="pay" ${paymentMethod==='mobile_money'?'checked':''}/> 📱 Mobile Money (Orange Money / MTN MoMo)
+        </label>
+        <div class="mm-note" style="${paymentMethod==='mobile_money'?'':'display:none'}" id="mm-note">You'll get a call/message to confirm the mobile money payment before delivery.</div>
+        <label class="pay-opt ${paymentMethod==='cod'?'selected':''}" onclick="setPayment('cod')">
+          <input type="radio" name="pay" ${paymentMethod==='cod'?'checked':''}/> 💵 Cash on delivery
+        </label>
+      </div>
+    </div>
+
+    <button class="submit-order" onclick="submitOrder()">Send order via WhatsApp</button>
+  `;
+}
+function setPayment(m){ paymentMethod = m; renderCheckoutForm(); }
+function renderCheckoutForm(){
+  document.getElementById('checkoutModalBody').innerHTML = checkoutFormHTML();
+}
+function openCheckout(){
+  if(cart.length === 0) return;
+  closeCart();
+  renderCheckoutForm();
+  document.getElementById('checkoutOverlay').classList.add('show');
+}
+function closeCheckout(){
+  document.getElementById('checkoutOverlay').classList.remove('show');
+}
+function submitOrder(){
+  const name = document.getElementById('cf-name').value.trim();
+  const phone = document.getElementById('cf-phone').value.trim();
+  const district = document.getElementById('cf-district').value;
+  const address = document.getElementById('cf-address').value.trim();
+  if(!name || !phone || !address){
+    alert('Please fill in your name, phone number, and delivery address.');
+    return;
+  }
+  const lines = cart.map(c=>{ const j=JERSEYS.find(x=>x.id===c.id); return `• ${j.club} — size ${c.size} × ${c.qty} = $${c.qty*PRICE}`; }).join('\n');
+  const payLabel = paymentMethod === 'mobile_money' ? 'Mobile Money (Orange Money / MTN MoMo)' : 'Cash on delivery';
+  const message =
+`New GOAL15 order
+Name: ${name}
+Phone: ${phone}
+Community: ${district}
+Address: ${address}
+Payment: ${payLabel}
+
+Jerseys:
+${lines}
+
+Total: $${cartTotalAmount()}`;
+
+  const waUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+
+  document.getElementById('checkoutModalBody').innerHTML = `
+    <div class="confirm-box">
+      <div class="big-check">✅</div>
+      <h3>Order ready to send</h3>
+      <p>Tap below to open WhatsApp with your order filled in. Send it and we'll confirm your delivery.</p>
+      <a class="wa-link" href="${waUrl}" target="_blank" rel="noopener">Open WhatsApp &amp; send order</a>
+      <button class="modal-close-final" onclick="finishOrder()">Done</button>
+    </div>
+  `;
+}
+function finishOrder(){
+  cart = [];
+  saveCart();
+  renderCartCount();
+  closeCheckout();
+}
+
+/* ---------------- INIT ---------------- */
+renderFilterBar();
+renderGrid();
+renderCartCount();
+JERSEYS.forEach(j => qtyState[j.id] = 1);
+</script>
+</body>
+</html>
